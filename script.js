@@ -3,6 +3,8 @@ const addToDoGroupBtn = document.getElementById("addToDoGroup");
 const addTaskBtn = document.querySelector(".to-do-group > button");
 const toDoList = document.querySelector(".to-do-group .to-do-list");
 const mainContainer = document.querySelector(".main-container");
+const removeButton = document.querySelector(".to-do-list label button");
+const sampleTask = document.querySelector(".to-do-list label");
 
 async function addTask(container) {
   const task = await useModal("What do you want to add?");
@@ -10,13 +12,22 @@ async function addTask(container) {
   const label = document.createElement("label");
   const inputCheckbox = document.createElement("input");
   const toDoText = document.createElement("p");
+  const removeButton = document.createElement("button");
+  removeButton.textContent = "❌";
+  removeButton.addEventListener("click", () => removeTask(label));
   toDoText.textContent = task;
   inputCheckbox.type = "checkbox";
   label.appendChild(inputCheckbox);
   label.appendChild(toDoText);
+  label.appendChild(removeButton);
   container.appendChild(label);
 }
 
+function removeTask(label) {
+  label.remove();
+}
+
+removeButton.addEventListener("click", () => removeTask(sampleTask));
 addTaskBtn.addEventListener("click", async () => addTask(toDoList));
 addToDoGroupBtn.addEventListener("click", async () => {
   const task = await useModal(
@@ -77,9 +88,8 @@ function useModal(modalText) {
   });
 }
 
+const resetButton = document.querySelector("aside button");
 
-const resetButton = document.querySelector("aside button")
-
-resetButton.addEventListener("click", ()=>{
-    location.reload(true);
-})
+resetButton.addEventListener("click", () => {
+  location.reload(true);
+});
