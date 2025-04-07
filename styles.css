@@ -45,10 +45,15 @@ div.modal-container {
   width: 100vw;
   position: absolute;
   z-index: 999;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
 }
+
+div.modal-container.active{
+    display: flex;
+}
+
 
 div.modal-container > div.blur {
   position: absolute;
@@ -78,6 +83,7 @@ div.modal > p {
 div.modal input {
   height: 3em;
   width: 60%;
+  padding-left: 0.5em;
 }
 
 div.modal div.modal-buttons {
